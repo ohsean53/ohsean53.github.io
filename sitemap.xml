@@ -2,34 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>/2017/04/welcome/</loc>
+    <loc>https://ohsaean.github.io/2017/04/welcome/</loc>
     <lastmod>2017-04-21T15:52:43+09:00</lastmod>
   </url>
   
   <url>
-    <loc>/archives/</loc>
+    <loc>https://ohsaean.github.io/archives/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/categories/</loc>
+    <loc>https://ohsaean.github.io/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/</loc>
-    <lastmod>2017-04-21T15:52:43+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/post/</loc>
+    <loc>https://ohsaean.github.io/</loc>
     <lastmod>2017-04-21T15:52:43+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/</loc>
+    <loc>https://ohsaean.github.io/post/</loc>
+    <lastmod>2017-04-21T15:52:43+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://ohsaean.github.io/tags/</loc>
     <priority>0</priority>
   </url>
   
