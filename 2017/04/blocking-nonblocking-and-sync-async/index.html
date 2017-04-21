@@ -23,7 +23,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.20.2">
     <meta name="theme" content="Tranquilpeak 0.3.1-BETA">
-    <title>welcome</title>
+    <title>Blocking-Nonblocking and Sync-Async</title>
     <meta name="author" content="Saean OH">
     <meta name="keywords" content="">
 
@@ -31,15 +31,21 @@
     
 
     
-    <meta name="description" content="hello universe">
-    <meta property="og:description" content="hello universe">
+    <meta name="description" content="IBM 에서 그려놓은 2x2 매트릭스 Blocking / NonBlocking  호출되는 함수가 바로 리턴되는가, 안되는가 차이
+ blocking 은 말 그대로, 어떤 작업 (read, wrtie) 을 하는 도중에는 다른 프로세스나 스레드가 작업을 할 수 없는 상태 (작업이 끝날때까지 리턴되지 않음)
+NonBlocking 은 컨텍스트 스위칭 (context-switch) 를 통해서 프로세스나, 스레드가 각자 필요한 read, write 같은 시스템 콜을 번갈아 가며 사용가능 함. 잦은 시스템 콜, 컨텍스트 스위칭 때문에 비효율 적이다. (작업이 덜 끝나도, 바로 리턴됨)">
+    <meta property="og:description" content="IBM 에서 그려놓은 2x2 매트릭스 Blocking / NonBlocking  호출되는 함수가 바로 리턴되는가, 안되는가 차이
+ blocking 은 말 그대로, 어떤 작업 (read, wrtie) 을 하는 도중에는 다른 프로세스나 스레드가 작업을 할 수 없는 상태 (작업이 끝날때까지 리턴되지 않음)
+NonBlocking 은 컨텍스트 스위칭 (context-switch) 를 통해서 프로세스나, 스레드가 각자 필요한 read, write 같은 시스템 콜을 번갈아 가며 사용가능 함. 잦은 시스템 콜, 컨텍스트 스위칭 때문에 비효율 적이다. (작업이 덜 끝나도, 바로 리턴됨)">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="welcome">
-    <meta property="og:url" content="/2017/04/welcome/">
+    <meta property="og:title" content="Blocking-Nonblocking and Sync-Async">
+    <meta property="og:url" content="/2017/04/blocking-nonblocking-and-sync-async/">
     <meta property="og:site_name" content="Ohsaean&#39;s blog">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Ohsaean&#39;s blog">
-    <meta name="twitter:description" content="hello universe">
+    <meta name="twitter:description" content="IBM 에서 그려놓은 2x2 매트릭스 Blocking / NonBlocking  호출되는 함수가 바로 리턴되는가, 안되는가 차이
+ blocking 은 말 그대로, 어떤 작업 (read, wrtie) 을 하는 도중에는 다른 프로세스나 스레드가 작업을 할 수 없는 상태 (작업이 끝날때까지 리턴되지 않음)
+NonBlocking 은 컨텍스트 스위칭 (context-switch) 를 통해서 프로세스나, 스레드가 각자 필요한 read, write 같은 시스템 콜을 번갈아 가며 사용가능 함. 잦은 시스템 콜, 컨텍스트 스위칭 때문에 비효율 적이다. (작업이 덜 끝나도, 바로 리턴됨)">
     
     
 
@@ -211,18 +217,26 @@
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      welcome
+      Blocking-Nonblocking and Sync-Async
     </h1>
   
   <div class="postShorten-meta post-meta">
   
-    <time itemprop="datePublished" datetime="2017-04-21T15:52:43&#43;09:00">
+    <time itemprop="datePublished" datetime="2017-04-21T11:30:27&#43;09:00">
       
   April 21, 2017
 
     </time>
   
   
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="https://ohsaean.github.io/categories/concepts">Concepts</a>
+    
+  
+
 
 </div>
 
@@ -230,13 +244,68 @@
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <p>hello universe</p>
+              
+
+<h1 id="ibm-에서-그려놓은-2x2-매트릭스">IBM 에서 그려놓은 2x2 매트릭스</h1>
+
+<p><img src="http://www.ibm.com/developerworks/library/l-async/figure1.gif" alt="IBM developerWorks의 단순화된 리눅스 I/O 모델 매트릭스" /></p>
+
+<h1 id="blocking-nonblocking">Blocking / NonBlocking</h1>
+
+<blockquote>
+<p><strong>호출되는 함수가 바로 리턴되는가, 안되는가 차이</strong></p>
+</blockquote>
+
+<p>blocking 은 말 그대로, 어떤 작업 (read, wrtie) 을 하는 도중에는 다른 프로세스나 스레드가 작업을 할 수 없는 상태 (작업이 끝날때까지 리턴되지 않음)</p>
+
+<p>NonBlocking 은
+컨텍스트 스위칭 (context-switch) 를 통해서 프로세스나, 스레드가 각자 필요한 read, write 같은 시스템 콜을 번갈아 가며 사용가능 함.
+잦은 시스템 콜, 컨텍스트 스위칭 때문에 비효율 적이다.
+(작업이 덜 끝나도, 바로 리턴됨)</p>
+
+<h1 id="syncronous-asynchronous">Syncronous / Asynchronous</h1>
+
+<blockquote>
+<p><strong>호출 되는 함수의 작업 완료 여부를 누가 신경 쓰는가 차이</strong></p>
+</blockquote>
+
+<p>호출하는 쪽에서 호출되는 함수의 리턴을 기다리거나, 작업 완료를 계속 체크하려는 (동기화하려는) 시도를 한다면, Syncronous</p>
+
+<p>호출하는 쪽에서는 완료를 신경 쓰지 않고 callback 을 넘겨서 호출되는 쪽에서 callback 을 실행하고 호출하는 함수는 작업의 완료 여부를 신경 쓰지 않는다면, Asynchronous</p>
+
+<h1 id="정리">정리</h1>
+
+<p>동기-블록킹은 흔히 file 을 읽거나, 쓰기 시에 사용함.</p>
+
+<p>비동기-블로킹은 대표적인 예는 select() 를 호출하는 경우임. select 호출시 블록킹은 하나, 결과 완료를 신경 쓰지 않음</p>
+
+<p>동기-논블록킹의 EWOULDBLOCK 처럼 바로 끝나버리는 작업을 매번 체크함 (future.isDone())</p>
+
+<p>비동기-논블록킹은 boost.asio</p>
 
               
             </div>
           </div>
           <div id="post-footer" class="post-footer main-content-wrap">
             
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://ohsaean.github.io/tags/blocking/">blocking</a>
+
+  <a class="tag tag--primary tag--small" href="https://ohsaean.github.io/tags/nonblocking/">nonblocking</a>
+
+  <a class="tag tag--primary tag--small" href="https://ohsaean.github.io/tags/sync/">sync</a>
+
+  <a class="tag tag--primary tag--small" href="https://ohsaean.github.io/tags/async/">async</a>
+
+  <a class="tag tag--primary tag--small" href="https://ohsaean.github.io/tags/io/">io</a>
+
+                  </div>
+                
               
             
             <div class="post-actions-wrap">
@@ -245,7 +314,7 @@
       
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--disabled">
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://ohsaean.github.io/2017/04/welcome/" data-tooltip="welcome">
           
             <i class="fa fa-angle-left"></i>
             <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -253,7 +322,7 @@
         </li>
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--default tooltip--top" href="https://ohsaean.github.io/2017/04/blocking-nonblocking-and-sync-async/" data-tooltip="Blocking-Nonblocking and Sync-Async">
+            <a class="post-action-btn btn btn--disabled">
           
             <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
             <i class="fa fa-angle-right"></i>
@@ -270,17 +339,17 @@
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https%3a%2f%2fohsaean.github.io%2f2017%2f04%2fwelcome%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https%3a%2f%2fohsaean.github.io%2f2017%2f04%2fblocking-nonblocking-and-sync-async%2f">
           <i class="fa fa-google-plus"></i>
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fohsaean.github.io%2f2017%2f04%2fwelcome%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fohsaean.github.io%2f2017%2f04%2fblocking-nonblocking-and-sync-async%2f">
           <i class="fa fa-facebook-official"></i>
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fohsaean.github.io%2f2017%2f04%2fwelcome%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fohsaean.github.io%2f2017%2f04%2fblocking-nonblocking-and-sync-async%2f">
           <i class="fa fa-twitter"></i>
         </a>
       </li>
@@ -326,7 +395,7 @@
       
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--disabled">
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://ohsaean.github.io/2017/04/welcome/" data-tooltip="welcome">
           
             <i class="fa fa-angle-left"></i>
             <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -334,7 +403,7 @@
         </li>
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--default tooltip--top" href="https://ohsaean.github.io/2017/04/blocking-nonblocking-and-sync-async/" data-tooltip="Blocking-Nonblocking and Sync-Async">
+            <a class="post-action-btn btn btn--disabled">
           
             <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
             <i class="fa fa-angle-right"></i>
@@ -351,17 +420,17 @@
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https%3a%2f%2fohsaean.github.io%2f2017%2f04%2fwelcome%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https%3a%2f%2fohsaean.github.io%2f2017%2f04%2fblocking-nonblocking-and-sync-async%2f">
           <i class="fa fa-google-plus"></i>
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fohsaean.github.io%2f2017%2f04%2fwelcome%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fohsaean.github.io%2f2017%2f04%2fblocking-nonblocking-and-sync-async%2f">
           <i class="fa fa-facebook-official"></i>
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fohsaean.github.io%2f2017%2f04%2fwelcome%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fohsaean.github.io%2f2017%2f04%2fblocking-nonblocking-and-sync-async%2f">
           <i class="fa fa-twitter"></i>
         </a>
       </li>
@@ -388,17 +457,17 @@
       <div id="share-options-bar" class="share-options-bar" data-behavior="4">
   <ul class="share-options">
     <li class="share-option">
-      <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3a%2f%2fohsaean.github.io%2f2017%2f04%2fwelcome%2f">
+      <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3a%2f%2fohsaean.github.io%2f2017%2f04%2fblocking-nonblocking-and-sync-async%2f">
         <i class="fa fa-google-plus"></i><span>Share on Google Plus</span>
       </a>
     </li>
     <li class="share-option">
-      <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fohsaean.github.io%2f2017%2f04%2fwelcome%2f">
+      <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fohsaean.github.io%2f2017%2f04%2fblocking-nonblocking-and-sync-async%2f">
         <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
       </a>
     </li>
     <li class="share-option">
-      <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fohsaean.github.io%2f2017%2f04%2fwelcome%2f">
+      <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fohsaean.github.io%2f2017%2f04%2fblocking-nonblocking-and-sync-async%2f">
         <i class="fa fa-twitter"></i><span>Share on Twitter</span>
       </a>
     </li>
@@ -559,9 +628,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'https:\/\/ohsaean.github.io\/2017\/04\/welcome\/';
+          this.page.url = 'https:\/\/ohsaean.github.io\/2017\/04\/blocking-nonblocking-and-sync-async\/';
           
-            this.page.identifier = '\/2017\/04\/welcome\/'
+            this.page.identifier = '\/2017\/04\/blocking-nonblocking-and-sync-async\/'
           
         };
         (function() {
