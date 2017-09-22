@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Concepts on Ohsaean&#39;s blog</title>
-    <link>https://ohsaean.github.io/categories/concepts/</link>
-    <description>Recent content in Concepts on Ohsaean&#39;s blog</description>
+    <title>Carldinality on Ohsaean&#39;s blog</title>
+    <link>https://ohsaean.github.io/tags/carldinality/</link>
+    <description>Recent content in Carldinality on Ohsaean&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 22 Sep 2017 00:30:00 +0900</lastBuildDate>
     
-	<atom:link href="https://ohsaean.github.io/categories/concepts/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://ohsaean.github.io/tags/carldinality/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -23,17 +23,6 @@
 선택도가 높다면, 검색 대상이 줄어들기 때문에 그만큼 빠르게 질의(Query) 가 가능하다.
  선택도가 좋지 않아도, 정렬이나 그룹핑과 같은 작업을 위해 인덱스가 필요 할 수도 있다. 인덱스가 검색만을 위해서 사용되는 것은 아니다.
  옵티마이저에 의해서, 선택도가 낮은 경우 (검색 결과가 테이블의 30% 이상 리턴 하는 경우)</description>
-    </item>
-    
-    <item>
-      <title>Blocking-Nonblocking and Sync-Async</title>
-      <link>https://ohsaean.github.io/2017/04/blocking-nonblocking-and-sync-async/</link>
-      <pubDate>Fri, 21 Apr 2017 11:30:27 +0900</pubDate>
-      
-      <guid>https://ohsaean.github.io/2017/04/blocking-nonblocking-and-sync-async/</guid>
-      <description>IBM 에서 그려놓은 2x2 매트릭스 Blocking / NonBlocking  호출되는 함수가 바로 리턴되는가, 안되는가 차이
- blocking 은 말 그대로, 어떤 작업 (read, write) 을 하는 도중에는 다른 프로세스나 스레드가 작업을 할 수 없는 상태 (작업이 끝날때까지 리턴되지 않음)
-NonBlocking 은 컨텍스트 스위칭 (context-switch) 를 통해서 프로세스나, 스레드가 각자 필요한 read, write 같은 시스템 콜을 번갈아 가며 사용가능 함. 잦은 시스템 콜, 컨텍스트 스위칭 때문에 비효율 적이다. (작업이 덜 끝나도, 바로 리턴됨)</description>
     </item>
     
   </channel>

@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://ohsaean.github.io/2017/09/%EC%84%A0%ED%83%9D%EB%8F%84-%EA%B8%B0%EC%88%98%EC%84%B1/</loc>
+    <lastmod>2017-09-22T00:30:00+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://ohsaean.github.io/2017/04/welcome/</loc>
     <lastmod>2017-04-21T15:52:43+09:00</lastmod>
   </url>
@@ -29,19 +34,31 @@
   </url>
   
   <url>
+    <loc>https://ohsaean.github.io/tags/carldinality/</loc>
+    <lastmod>2017-09-22T00:30:00+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://ohsaean.github.io/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://ohsaean.github.io/categories/concepts/</loc>
-    <lastmod>2017-04-21T11:30:27+09:00</lastmod>
+    <lastmod>2017-09-22T00:30:00+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://ohsaean.github.io/tags/io/</loc>
     <lastmod>2017-04-21T11:30:27+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://ohsaean.github.io/tags/mysql/</loc>
+    <lastmod>2017-09-22T00:30:00+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -53,13 +70,19 @@
   
   <url>
     <loc>https://ohsaean.github.io/</loc>
-    <lastmod>2017-04-21T15:52:43+09:00</lastmod>
+    <lastmod>2017-09-22T00:30:00+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://ohsaean.github.io/post/</loc>
-    <lastmod>2017-04-21T15:52:43+09:00</lastmod>
+    <lastmod>2017-09-22T00:30:00+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://ohsaean.github.io/tags/selectivity/</loc>
+    <lastmod>2017-09-22T00:30:00+09:00</lastmod>
     <priority>0</priority>
   </url>
   
