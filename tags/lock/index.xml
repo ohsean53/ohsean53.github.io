@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Lock on Ohsaean&#39;s blog</title>
+    <link>https://ohsaean.github.io/tags/lock/</link>
+    <description>Recent content in Lock on Ohsaean&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 18 Nov 2017 19:30:00 +0900</lastBuildDate>
+    
+	<atom:link href="https://ohsaean.github.io/tags/lock/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Lock Free 알고리즘</title>
+      <link>https://ohsaean.github.io/2017/11/lock-free-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/</link>
+      <pubDate>Sat, 18 Nov 2017 19:30:00 +0900</pubDate>
+      
+      <guid>https://ohsaean.github.io/2017/11/lock-free-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/</guid>
+      <description>lock-free 정의  멀티스레드 환경에서 동시에 호출해도 정확한 결과를 만들어주는 알고리즘
+ 여러개의 스레드에서 동시에 작업이 호출되었을 경우 정해진 시간마다
+적어도 한개의 작업이 호출되는 알고리즘.
+흔히 사용하는 Mutex 를 사용하면 하나도 실행이 안될 수 있다.
+하지만, lock-free는 적어도 1개는 무조건 실행이 되고 있어야 한다.
+(작업이 몇 천만번이라면, 생각보다 큰 차이를 만들게 된다.)
+호출이 다른 스레드와 충돌하였을 경우 적어도 하나의 승자가 있어서, 승자는 delay 없이 완료된다.
+Non-Blocking 알고리즘  다른 스레드가 어떤 상태에 있건 상관없이 호출 완료.</description>
+    </item>
+    
+  </channel>
+</rss>
