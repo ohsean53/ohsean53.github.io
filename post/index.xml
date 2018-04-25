@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Ohsaean&#39;s blog</title>
-    <link>https://ohsaean.github.io/post/</link>
-    <description>Recent content in Posts on Ohsaean&#39;s blog</description>
+    <title>Posts on Sean&#39;s blog</title>
+    <link>https://naesho.github.io/post/</link>
+    <description>Recent content in Posts on Sean&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 18 Nov 2017 19:30:00 +0900</lastBuildDate>
     
-	<atom:link href="https://ohsaean.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://naesho.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Lock Free 알고리즘</title>
-      <link>https://ohsaean.github.io/2017/11/lock-free-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/</link>
+      <link>https://naesho.github.io/2017/11/lock-free-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/</link>
       <pubDate>Sat, 18 Nov 2017 19:30:00 +0900</pubDate>
       
-      <guid>https://ohsaean.github.io/2017/11/lock-free-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/</guid>
+      <guid>https://naesho.github.io/2017/11/lock-free-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/</guid>
       <description>lock-free 정의  멀티스레드 환경에서 동시에 호출해도 정확한 결과를 만들어주는 알고리즘
  여러개의 스레드에서 동시에 작업이 호출되었을 경우 정해진 시간마다
 적어도 한개의 작업이 호출되는 알고리즘.
@@ -29,10 +29,10 @@ Non-Blocking 알고리즘  다른 스레드가 어떤 상태에 있건 상관없
     
     <item>
       <title>선택도 (기수성)</title>
-      <link>https://ohsaean.github.io/2017/09/%EC%84%A0%ED%83%9D%EB%8F%84-%EA%B8%B0%EC%88%98%EC%84%B1/</link>
+      <link>https://naesho.github.io/2017/09/%EC%84%A0%ED%83%9D%EB%8F%84-%EA%B8%B0%EC%88%98%EC%84%B1/</link>
       <pubDate>Fri, 22 Sep 2017 00:30:00 +0900</pubDate>
       
-      <guid>https://ohsaean.github.io/2017/09/%EC%84%A0%ED%83%9D%EB%8F%84-%EA%B8%B0%EC%88%98%EC%84%B1/</guid>
+      <guid>https://naesho.github.io/2017/09/%EC%84%A0%ED%83%9D%EB%8F%84-%EA%B8%B0%EC%88%98%EC%84%B1/</guid>
       <description>선택도  모든 인덱스 키값 가운데 유니크한 값의 수를 의미함
  전체 인덱스 키값은 100개인데, 그중에서 유니크한 값의 수는 10개라면 기수성은 10
 인덱스 키값에 중복이 많다면 선택도가 낮다는 뜻임
@@ -43,19 +43,19 @@ Non-Blocking 알고리즘  다른 스레드가 어떤 상태에 있건 상관없
     
     <item>
       <title>welcome</title>
-      <link>https://ohsaean.github.io/2017/04/welcome/</link>
+      <link>https://naesho.github.io/2017/04/welcome/</link>
       <pubDate>Fri, 21 Apr 2017 15:52:43 +0900</pubDate>
       
-      <guid>https://ohsaean.github.io/2017/04/welcome/</guid>
+      <guid>https://naesho.github.io/2017/04/welcome/</guid>
       <description>hello universe</description>
     </item>
     
     <item>
       <title>Blocking-Nonblocking and Sync-Async</title>
-      <link>https://ohsaean.github.io/2017/04/blocking-nonblocking-and-sync-async/</link>
+      <link>https://naesho.github.io/2017/04/blocking-nonblocking-and-sync-async/</link>
       <pubDate>Fri, 21 Apr 2017 11:30:27 +0900</pubDate>
       
-      <guid>https://ohsaean.github.io/2017/04/blocking-nonblocking-and-sync-async/</guid>
+      <guid>https://naesho.github.io/2017/04/blocking-nonblocking-and-sync-async/</guid>
       <description>IBM 에서 그려놓은 2x2 매트릭스 Blocking / NonBlocking  호출되는 함수가 바로 리턴되는가, 안되는가 차이
  blocking 은 말 그대로, 어떤 작업 (read, write) 을 하는 도중에는 다른 프로세스나 스레드가 작업을 할 수 없는 상태 (작업이 끝날때까지 리턴되지 않음)
 NonBlocking 은 컨텍스트 스위칭 (context-switch) 를 통해서 프로세스나, 스레드가 각자 필요한 read, write 같은 시스템 콜을 번갈아 가며 사용가능 함. 잦은 시스템 콜, 컨텍스트 스위칭 때문에 비효율 적이다. (작업이 덜 끝나도, 바로 리턴됨)</description>

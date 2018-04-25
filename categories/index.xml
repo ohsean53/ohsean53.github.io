@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Categories on Ohsaean&#39;s blog</title>
-    <link>https://ohsaean.github.io/categories/</link>
-    <description>Recent content in Categories on Ohsaean&#39;s blog</description>
+    <title>Categories on Sean&#39;s blog</title>
+    <link>https://naesho.github.io/categories/</link>
+    <description>Recent content in Categories on Sean&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
-	<atom:link href="https://ohsaean.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://naesho.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Concepts</title>
-      <link>https://ohsaean.github.io/categories/concepts/</link>
+      <link>https://naesho.github.io/categories/concepts/</link>
       <pubDate>Sat, 18 Nov 2017 19:30:00 +0900</pubDate>
       
-      <guid>https://ohsaean.github.io/categories/concepts/</guid>
+      <guid>https://naesho.github.io/categories/concepts/</guid>
       <description></description>
     </item>
     
