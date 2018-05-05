@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Async on Sean&#39;s blog</title>
-    <link>https://ohsean.github.io/tags/async/</link>
+    <link>https://ohsean53.github.io/tags/async/</link>
     <description>Recent content in Async on Sean&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 21 Apr 2017 11:30:27 +0900</lastBuildDate>
     
-	<atom:link href="https://ohsean.github.io/tags/async/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://ohsean53.github.io/tags/async/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Blocking-Nonblocking and Sync-Async</title>
-      <link>https://ohsean.github.io/2017/04/blocking-nonblocking-and-sync-async/</link>
+      <link>https://ohsean53.github.io/2017/04/blocking-nonblocking-and-sync-async/</link>
       <pubDate>Fri, 21 Apr 2017 11:30:27 +0900</pubDate>
       
-      <guid>https://ohsean.github.io/2017/04/blocking-nonblocking-and-sync-async/</guid>
+      <guid>https://ohsean53.github.io/2017/04/blocking-nonblocking-and-sync-async/</guid>
       <description>IBM 에서 그려놓은 2x2 매트릭스 Blocking / NonBlocking  호출되는 함수가 바로 리턴되는가, 안되는가 차이
  blocking 은 말 그대로, 어떤 작업 (read, write) 을 하는 도중에는 다른 프로세스나 스레드가 작업을 할 수 없는 상태 (작업이 끝날때까지 리턴되지 않음)
 NonBlocking 은 컨텍스트 스위칭 (context-switch) 를 통해서 프로세스나, 스레드가 각자 필요한 read, write 같은 시스템 콜을 번갈아 가며 사용가능 함. 잦은 시스템 콜, 컨텍스트 스위칭 때문에 비효율 적이다. (작업이 덜 끝나도, 바로 리턴됨)</description>
