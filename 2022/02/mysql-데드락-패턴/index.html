@@ -22,7 +22,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.20.2 with theme Tranquilpeak 0.4.3-BETA">
-    <title>Blocking-Nonblocking and Sync-Async</title>
+    <title>Mysql 데드락 패턴</title>
     <meta name="author" content="Sean OH">
     <meta name="keywords" content="">
 
@@ -30,21 +30,15 @@
     
 
     
-    <meta name="description" content="IBM 에서 그려놓은 2x2 매트릭스 Blocking / NonBlocking  호출되는 함수가 바로 리턴되는가, 안되는가 차이
- blocking 은 말 그대로, 어떤 작업 (read, write) 을 하는 도중에는 다른 프로세스나 스레드가 작업을 할 수 없는 상태 (작업이 끝날때까지 리턴되지 않음)
-NonBlocking 은 컨텍스트 스위칭 (context-switch) 를 통해서 프로세스나, 스레드가 각자 필요한 read, write 같은 시스템 콜을 번갈아 가며 사용가능 함. 잦은 시스템 콜, 컨텍스트 스위칭 때문에 비효율 적이다. (작업이 덜 끝나도, 바로 리턴됨)">
-    <meta property="og:description" content="IBM 에서 그려놓은 2x2 매트릭스 Blocking / NonBlocking  호출되는 함수가 바로 리턴되는가, 안되는가 차이
- blocking 은 말 그대로, 어떤 작업 (read, write) 을 하는 도중에는 다른 프로세스나 스레드가 작업을 할 수 없는 상태 (작업이 끝날때까지 리턴되지 않음)
-NonBlocking 은 컨텍스트 스위칭 (context-switch) 를 통해서 프로세스나, 스레드가 각자 필요한 read, write 같은 시스템 콜을 번갈아 가며 사용가능 함. 잦은 시스템 콜, 컨텍스트 스위칭 때문에 비효율 적이다. (작업이 덜 끝나도, 바로 리턴됨)">
+    <meta name="description" content="데드락 발생 패턴 잠금의 종류  배타적 잠금  Exclusive-Lock, Write Lock, X-Lock 해당 트랜잭션이 특정 레코드나 간격을 변경하기 위해 획득해야 하는 잠금 내가 쓰기를 하는 동안 남들이 쓰지 못하게 하는 것!  공유 잠금  Shared-Lock, Read-Lock, S-Lock 레코드나 간격을 읽을 때 다른 트랜잭션이 변경하지 못하게 하는 용도의 잠금 내가 읽는 동안 남들이 내가 읽고 있는 데이터를 변경하거나 삭제하지 못하게 막는 장치   프라이머리 키나 유니크 키가 존재하는 테이블에서 INSERT를 수행할 때 공유 잠금을 걸어야하는 이유?">
+    <meta property="og:description" content="데드락 발생 패턴 잠금의 종류  배타적 잠금  Exclusive-Lock, Write Lock, X-Lock 해당 트랜잭션이 특정 레코드나 간격을 변경하기 위해 획득해야 하는 잠금 내가 쓰기를 하는 동안 남들이 쓰지 못하게 하는 것!  공유 잠금  Shared-Lock, Read-Lock, S-Lock 레코드나 간격을 읽을 때 다른 트랜잭션이 변경하지 못하게 하는 용도의 잠금 내가 읽는 동안 남들이 내가 읽고 있는 데이터를 변경하거나 삭제하지 못하게 막는 장치   프라이머리 키나 유니크 키가 존재하는 테이블에서 INSERT를 수행할 때 공유 잠금을 걸어야하는 이유?">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Blocking-Nonblocking and Sync-Async">
-    <meta property="og:url" content="/2017/04/blocking-nonblocking-and-sync-async/">
+    <meta property="og:title" content="Mysql 데드락 패턴">
+    <meta property="og:url" content="/2022/02/mysql-%EB%8D%B0%EB%93%9C%EB%9D%BD-%ED%8C%A8%ED%84%B4/">
     <meta property="og:site_name" content="Sean&#39;s blog">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Sean&#39;s blog">
-    <meta name="twitter:description" content="IBM 에서 그려놓은 2x2 매트릭스 Blocking / NonBlocking  호출되는 함수가 바로 리턴되는가, 안되는가 차이
- blocking 은 말 그대로, 어떤 작업 (read, write) 을 하는 도중에는 다른 프로세스나 스레드가 작업을 할 수 없는 상태 (작업이 끝날때까지 리턴되지 않음)
-NonBlocking 은 컨텍스트 스위칭 (context-switch) 를 통해서 프로세스나, 스레드가 각자 필요한 read, write 같은 시스템 콜을 번갈아 가며 사용가능 함. 잦은 시스템 콜, 컨텍스트 스위칭 때문에 비효율 적이다. (작업이 덜 끝나도, 바로 리턴됨)">
+    <meta name="twitter:description" content="데드락 발생 패턴 잠금의 종류  배타적 잠금  Exclusive-Lock, Write Lock, X-Lock 해당 트랜잭션이 특정 레코드나 간격을 변경하기 위해 획득해야 하는 잠금 내가 쓰기를 하는 동안 남들이 쓰지 못하게 하는 것!  공유 잠금  Shared-Lock, Read-Lock, S-Lock 레코드나 간격을 읽을 때 다른 트랜잭션이 변경하지 못하게 하는 용도의 잠금 내가 읽는 동안 남들이 내가 읽고 있는 데이터를 변경하거나 삭제하지 못하게 막는 장치   프라이머리 키나 유니크 키가 존재하는 테이블에서 INSERT를 수행할 때 공유 잠금을 걸어야하는 이유?">
     
     
 
@@ -55,8 +49,6 @@ NonBlocking 은 컨텍스트 스위칭 (context-switch) 를 통해서 프로세�
       <meta property="og:image" content="//www.gravatar.com/avatar/7a4c68d665b261a046aaae5678716904?s=640">
     
 
-    
-      <meta property="og:image" content="http://www.ibm.com/developerworks/library/l-async/figure1.gif">
     
     
     
@@ -221,15 +213,15 @@ NonBlocking 은 컨텍스트 스위칭 (context-switch) 를 통해서 프로세�
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      Blocking-Nonblocking and Sync-Async
+      Mysql 데드락 패턴
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2017-04-21T11:30:27&#43;09:00">
+      <time itemprop="datePublished" datetime="2022-02-10T00:00:00&#43;09:00">
         
-  April 21, 2017
+  February 10, 2022
 
       </time>
     
@@ -250,42 +242,106 @@ NonBlocking 은 컨텍스트 스위칭 (context-switch) 를 통해서 프로세�
             <div class="main-content-wrap">
               
 
-<h1 id="ibm-에서-그려놓은-2x2-매트릭스">IBM 에서 그려놓은 2x2 매트릭스</h1>
+<h1 id="데드락-발생-패턴">데드락 발생 패턴</h1>
 
-<p><img src="http://www.ibm.com/developerworks/library/l-async/figure1.gif" alt="IBM developerWorks의 단순화된 리눅스 I/O 모델 매트릭스" /></p>
+<h2 id="잠금의-종류">잠금의 종류</h2>
 
-<h1 id="blocking-nonblocking">Blocking / NonBlocking</h1>
+<ul>
+<li>배타적 잠금
 
-<blockquote>
-<p><strong>호출되는 함수가 바로 리턴되는가, 안되는가 차이</strong></p>
-</blockquote>
+<ul>
+<li>Exclusive-Lock, Write Lock, X-Lock</li>
+<li>해당 트랜잭션이 특정 레코드나 간격을 변경하기 위해 획득해야 하는 잠금</li>
+<li>내가 쓰기를 하는 동안 남들이 쓰지 못하게 하는 것!</li>
+</ul></li>
+<li>공유 잠금
 
-<p>blocking 은 말 그대로, 어떤 작업 (read, write) 을 하는 도중에는 다른 프로세스나 스레드가 작업을 할 수 없는 상태 (작업이 끝날때까지 리턴되지 않음)</p>
+<ul>
+<li>Shared-Lock, Read-Lock, S-Lock</li>
+<li>레코드나 간격을 읽을 때 다른 트랜잭션이 변경하지 못하게 하는 용도의 잠금</li>
+<li>내가 읽는 동안 남들이 내가 읽고 있는 데이터를 변경하거나 삭제하지 못하게 막는 장치</li>
+</ul></li>
+</ul>
 
-<p>NonBlocking 은
-컨텍스트 스위칭 (context-switch) 를 통해서 프로세스나, 스레드가 각자 필요한 read, write 같은 시스템 콜을 번갈아 가며 사용가능 함.
-잦은 시스템 콜, 컨텍스트 스위칭 때문에 비효율 적이다.
-(작업이 덜 끝나도, 바로 리턴됨)</p>
+<p>프라이머리 키나 유니크 키가 존재하는 테이블에서 INSERT를 수행할 때 공유 잠금을 걸어야하는 이유?
+INSERT를 전제로 한 읽기 작업 중에 다른 트랜잭션에서 레코드를 변경하거나 삭제하면 일관성이 깨지기 때문
+(이전 데이터로 돌아간다던지..)</p>
 
-<h1 id="syncronous-asynchronous">Syncronous / Asynchronous</h1>
+<h2 id="패턴1-상호-거래-관련">패턴1 (상호 거래 관련)</h2>
 
-<blockquote>
-<p><strong>호출 되는 함수의 작업 완료 여부를 누가 신경 쓰는가 차이</strong></p>
-</blockquote>
+<ul>
+<li>가장 많이 알려진 데드락 패턴</li>
+<li>A 사용자가 B사용자에게 10포인트를 전달하고, 그와 동시에 B사용자도 A사용자에게 10포인트를 전달 하는 시나리오</li>
+</ul>
 
-<p>호출하는 쪽에서 호출되는 함수의 리턴을 기다리거나, 작업 완료를 계속 체크하려는 (동기화하려는) 시도를 한다면, Syncronous</p>
+<table>
+<thead>
+<tr>
+<th align="left">트랜잭션1</th>
+<th align="left">트랜잭션2</th>
+</tr>
+</thead>
 
-<p>호출하는 쪽에서는 완료를 신경 쓰지 않고 callback 을 넘겨서 호출되는 쪽에서 callback 을 실행하고 호출하는 함수는 작업의 완료 여부를 신경 쓰지 않는다면, Asynchronous</p>
+<tbody>
+<tr>
+<td align="left">BEGIN;</td>
+<td align="left"></td>
+</tr>
 
-<h1 id="정리">정리</h1>
+<tr>
+<td align="left"></td>
+<td align="left">BEGIN;</td>
+</tr>
 
-<p>동기-블록킹은 흔히 file 을 읽거나, 쓰기 시에 사용함.</p>
+<tr>
+<td align="left">UPDATE tb_user<BR>SET point_balance = point_balance - 10<br>WHERE user_id=&lsquo;A&rsquo;;</td>
+<td align="left"></td>
+</tr>
 
-<p>비동기-블로킹은 대표적인 예는 select() 를 호출하는 경우임. select 호출시 블록킹은 하나, 결과 완료를 신경 쓰지 않음</p>
+<tr>
+<td align="left"></td>
+<td align="left">UPDATE tb_user<BR>SET point_balance = point_balance - 10<br>WHERE user_id=&lsquo;B&rsquo;;</td>
+</tr>
 
-<p>동기-논블록킹의 EWOULDBLOCK 처럼 바로 끝나버리는 작업을 매번 체크함 (future.isDone())</p>
+<tr>
+<td align="left">UPDATE tb_user<BR>SET point_balance = point_balance + 10<br>WHERE user_id=&lsquo;B&rsquo;;</td>
+<td align="left"></td>
+</tr>
 
-<p>비동기-논블록킹은 boost.asio</p>
+<tr>
+<td align="left"></td>
+<td align="left">UPDATE tb_user<BR>SET point_balance = point_balance + 10<br>WHERE user_id=&lsquo;A&rsquo;;</td>
+</tr>
+
+<tr>
+<td align="left">&ndash; 데드락 발생 지점&ndash;</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left">COMMIT;</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left"></td>
+<td align="left">COMMIT;</td>
+</tr>
+</tbody>
+</table>
+
+<p>트랜잭션 1번에서 A 대해 배타적 잠금을 가지고 있고, 동시에 트랜잭션 2번은 B에 대해 배타적 잠금을 가지고 있음
+이 상태에서 다시 각자 상대방 트랜잭션에서 가지고 있는 레코드를 변경하기 위해 배타적 잠금을 요청하면 데드락이 발생함</p>
+
+<h2 id="패턴2-유니크-인덱스-관련">패턴2 (유니크 인덱스 관련)</h2>
+
+<ul>
+<li>공유 잠금과 배타적 잠금이 혼합된 형태</li>
+</ul>
+
+<h2 id="패턴3-외래키-관련">패턴3 (외래키 관련)</h2>
+
+<h2 id="패턴-4-서로-다른-인덱스를-통한-잠금">패턴 4 (서로 다른 인덱스를 통한 잠금)</h2>
 
               
             </div>
@@ -298,15 +354,9 @@ NonBlocking 은 컨텍스트 스위칭 (context-switch) 를 통해서 프로세�
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">TAGGED IN</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="https://ohsean53.github.io/tags/blocking/">blocking</a>
+  <a class="tag tag--primary tag--small" href="https://ohsean53.github.io/tags/deadlock/">deadlock</a>
 
-  <a class="tag tag--primary tag--small" href="https://ohsean53.github.io/tags/nonblocking/">nonblocking</a>
-
-  <a class="tag tag--primary tag--small" href="https://ohsean53.github.io/tags/sync/">sync</a>
-
-  <a class="tag tag--primary tag--small" href="https://ohsean53.github.io/tags/async/">async</a>
-
-  <a class="tag tag--primary tag--small" href="https://ohsean53.github.io/tags/io/">io</a>
+  <a class="tag tag--primary tag--small" href="https://ohsean53.github.io/tags/mysql/">mysql</a>
 
                   </div>
                 
@@ -319,7 +369,7 @@ NonBlocking 은 컨텍스트 스위칭 (context-switch) 를 통해서 프로세�
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://ohsean53.github.io/2017/04/welcome/" data-tooltip="welcome">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -327,7 +377,7 @@ NonBlocking 은 컨텍스트 스위칭 (context-switch) 를 통해서 프로세�
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--disabled">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://ohsean53.github.io/2017/11/lock-free-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/" data-tooltip="Lock Free 알고리즘">
               
                   <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
                   <i class="fa fa-angle-right"></i>
@@ -387,7 +437,7 @@ NonBlocking 은 컨텍스트 스위칭 (context-switch) 를 통해서 프로세�
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://ohsean53.github.io/2017/04/welcome/" data-tooltip="welcome">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -395,7 +445,7 @@ NonBlocking 은 컨텍스트 스위칭 (context-switch) 를 통해서 프로세�
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--disabled">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://ohsean53.github.io/2017/11/lock-free-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/" data-tooltip="Lock Free 알고리즘">
               
                   <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
                   <i class="fa fa-angle-right"></i>
@@ -622,9 +672,9 @@ NonBlocking 은 컨텍스트 스위칭 (context-switch) 를 통해서 프로세�
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'https:\/\/ohsean53.github.io\/2017\/04\/blocking-nonblocking-and-sync-async\/';
+          this.page.url = 'https:\/\/ohsean53.github.io\/2022\/02\/mysql-%EB%8D%B0%EB%93%9C%EB%9D%BD-%ED%8C%A8%ED%84%B4\/';
           
-            this.page.identifier = '\/2017\/04\/blocking-nonblocking-and-sync-async\/'
+            this.page.identifier = '\/2022\/02\/mysql-%EB%8D%B0%EB%93%9C%EB%9D%BD-%ED%8C%A8%ED%84%B4\/'
           
         };
         (function() {

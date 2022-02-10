@@ -28,15 +28,15 @@
     
 
     
-    <meta name="description" content="ohsean&#39;s blog">
-    <meta property="og:description" content="ohsean&#39;s blog">
+    <meta name="description" content="Sean&#39;s blog">
+    <meta property="og:description" content="Sean&#39;s blog">
     <meta property="og:type" content="blog">
     <meta property="og:title" content="Sean&#39;s blog">
     <meta property="og:url" content="/">
     <meta property="og:site_name" content="Sean&#39;s blog">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Sean&#39;s blog">
-    <meta name="twitter:description" content="ohsean&#39;s blog">
+    <meta name="twitter:description" content="Sean&#39;s blog">
     
     
 
@@ -207,6 +207,60 @@
                ">
         <section class="postShorten-group main-content-wrap">
           
+          
+            
+  
+    
+      
+        
+      
+    
+  
+
+
+  
+
+<article class="postShorten postShorten--thumbnailimg-right" itemscope itemType="http://schema.org/BlogPosting">
+  <div class="postShorten-wrap">
+    
+    <div class="postShorten-header">
+      <h1 class="postShorten-title" itemprop="headline">
+        <a class="link-unstyled" href="https://ohsean53.github.io/2022/02/mysql-%EB%8D%B0%EB%93%9C%EB%9D%BD-%ED%8C%A8%ED%84%B4/">
+          Mysql 데드락 패턴
+        </a>
+      </h1>
+      
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2022-02-10T00:00:00&#43;09:00">
+        
+  February 10, 2022
+
+      </time>
+    
+    
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="https://ohsean53.github.io/categories/concepts">Concepts</a>
+    
+  
+
+  </div>
+
+    </div>
+    <div class="postShorten-excerpt" itemprop="articleBody">
+      데드락 발생 패턴 잠금의 종류  배타적 잠금  Exclusive-Lock, Write Lock, X-Lock 해당 트랜잭션이 특정 레코드나 간격을 변경하기 위해 획득해야 하는 잠금 내가 쓰기를 하는 동안 남들이 쓰지 못하게 하는 것!  공유 잠금  Shared-Lock, Read-Lock, S-Lock 레코드나 간격을 읽을 때 다른 트랜잭션이 변경하지 못하게 하는 용도의 잠금 내가 읽는 동안 남들이 내가 읽고 있는 데이터를 변경하거나 삭제하지 못하게 막는 장치   프라이머리 키나 유니크 키가 존재하는 테이블에서 INSERT를 수행할 때 공유 잠금을 걸어야하는 이유?
+      <p>
+        <a href="https://ohsean53.github.io/2022/02/mysql-%EB%8D%B0%EB%93%9C%EB%9D%BD-%ED%8C%A8%ED%84%B4/" class="postShorten-excerpt_link link">Continue reading</a>
+        
+      </p>
+    </div>
+  </div>
+  
+</article>
+
           
             
   
@@ -495,6 +549,23 @@ NonBlocking 은 컨텍스트 스위칭 (context-switch) 를 통해서 프로세�
           <div class="media">
             
             <div class="media-body">
+              <a class="link-unstyled" href="https://ohsean53.github.io/2022/02/mysql-%EB%8D%B0%EB%93%9C%EB%9D%BD-%ED%8C%A8%ED%84%B4/">
+                <h3 class="media-heading">Mysql 데드락 패턴</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Feb 2, 2022
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">데드락 발생 패턴 잠금의 종류  배타적 잠금  Exclusive-Lock, Write Lock, X-Lock 해당 트랜잭션이 특정 레코드나 간격을 변경하기 위해 획득해야 하는 잠금 내가 쓰기를 하는 동안 남들이 쓰지 못하게 하는 것!  공유 잠금  Shared-Lock, Read-Lock, S-Lock 레코드나 간격을 읽을 때 다른 트랜잭션이 변경하지 못하게 하는 용도의 잠금 내가 읽는 동안 남들이 내가 읽고 있는 데이터를 변경하거나 삭제하지 못하게 막는 장치   프라이머리 키나 유니크 키가 존재하는 테이블에서 INSERT를 수행할 때 공유 잠금을 걸어야하는 이유?</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
               <a class="link-unstyled" href="https://ohsean53.github.io/2017/11/lock-free-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">
                 <h3 class="media-heading">Lock Free 알고리즘</h3>
               </a>
@@ -581,7 +652,7 @@ NonBlocking 은 컨텍스트 스위칭 (context-switch) 를 통해서 프로세�
          data-message-zero="no post found"
          data-message-one="1 post found"
          data-message-other="{n} posts found">
-         4 posts found
+         5 posts found
       </p>
     </div>
   </div>

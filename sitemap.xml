@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://ohsean53.github.io/2022/02/mysql-%EB%8D%B0%EB%93%9C%EB%9D%BD-%ED%8C%A8%ED%84%B4/</loc>
+    <lastmod>2022-02-10T00:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://ohsean53.github.io/2017/11/lock-free-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/</loc>
     <lastmod>2017-11-18T19:30:00+09:00</lastmod>
   </url>
@@ -51,13 +56,19 @@
   
   <url>
     <loc>https://ohsean53.github.io/categories/concepts/</loc>
-    <lastmod>2017-11-18T19:30:00+09:00</lastmod>
+    <lastmod>2022-02-10T00:00:00+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://ohsean53.github.io/tags/concurrency/</loc>
     <lastmod>2017-11-18T19:30:00+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://ohsean53.github.io/tags/deadlock/</loc>
+    <lastmod>2022-02-10T00:00:00+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -75,7 +86,7 @@
   
   <url>
     <loc>https://ohsean53.github.io/tags/mysql/</loc>
-    <lastmod>2017-09-22T00:30:00+09:00</lastmod>
+    <lastmod>2022-02-10T00:00:00+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -87,13 +98,13 @@
   
   <url>
     <loc>https://ohsean53.github.io/post/</loc>
-    <lastmod>2017-11-18T19:30:00+09:00</lastmod>
+    <lastmod>2022-02-10T00:00:00+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://ohsean53.github.io/</loc>
-    <lastmod>2017-11-18T19:30:00+09:00</lastmod>
+    <lastmod>2022-02-10T00:00:00+09:00</lastmod>
     <priority>0</priority>
   </url>
   

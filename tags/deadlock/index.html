@@ -1,9 +1,5 @@
 
 
-  
-    
-  
-
 
   
 
@@ -22,29 +18,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.20.2 with theme Tranquilpeak 0.4.3-BETA">
-    <title>Blocking-Nonblocking and Sync-Async</title>
+    <title>Deadlock</title>
     <meta name="author" content="Sean OH">
     <meta name="keywords" content="">
 
     <link rel="icon" href="https://ohsean53.github.io/favicon.png">
     
+      <link rel="alternate" type="application/rss+xml" title="RSS" href="https://ohsean53.github.io/tags/deadlock/index.xml">
+    
 
     
-    <meta name="description" content="IBM 에서 그려놓은 2x2 매트릭스 Blocking / NonBlocking  호출되는 함수가 바로 리턴되는가, 안되는가 차이
- blocking 은 말 그대로, 어떤 작업 (read, write) 을 하는 도중에는 다른 프로세스나 스레드가 작업을 할 수 없는 상태 (작업이 끝날때까지 리턴되지 않음)
-NonBlocking 은 컨텍스트 스위칭 (context-switch) 를 통해서 프로세스나, 스레드가 각자 필요한 read, write 같은 시스템 콜을 번갈아 가며 사용가능 함. 잦은 시스템 콜, 컨텍스트 스위칭 때문에 비효율 적이다. (작업이 덜 끝나도, 바로 리턴됨)">
-    <meta property="og:description" content="IBM 에서 그려놓은 2x2 매트릭스 Blocking / NonBlocking  호출되는 함수가 바로 리턴되는가, 안되는가 차이
- blocking 은 말 그대로, 어떤 작업 (read, write) 을 하는 도중에는 다른 프로세스나 스레드가 작업을 할 수 없는 상태 (작업이 끝날때까지 리턴되지 않음)
-NonBlocking 은 컨텍스트 스위칭 (context-switch) 를 통해서 프로세스나, 스레드가 각자 필요한 read, write 같은 시스템 콜을 번갈아 가며 사용가능 함. 잦은 시스템 콜, 컨텍스트 스위칭 때문에 비효율 적이다. (작업이 덜 끝나도, 바로 리턴됨)">
+    <meta name="description" content="Sean&#39;s blog">
+    <meta property="og:description" content="Sean&#39;s blog">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Blocking-Nonblocking and Sync-Async">
-    <meta property="og:url" content="/2017/04/blocking-nonblocking-and-sync-async/">
+    <meta property="og:title" content="Deadlock">
+    <meta property="og:url" content="/tags/deadlock/">
     <meta property="og:site_name" content="Sean&#39;s blog">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Sean&#39;s blog">
-    <meta name="twitter:description" content="IBM 에서 그려놓은 2x2 매트릭스 Blocking / NonBlocking  호출되는 함수가 바로 리턴되는가, 안되는가 차이
- blocking 은 말 그대로, 어떤 작업 (read, write) 을 하는 도중에는 다른 프로세스나 스레드가 작업을 할 수 없는 상태 (작업이 끝날때까지 리턴되지 않음)
-NonBlocking 은 컨텍스트 스위칭 (context-switch) 를 통해서 프로세스나, 스레드가 각자 필요한 read, write 같은 시스템 콜을 번갈아 가며 사용가능 함. 잦은 시스템 콜, 컨텍스트 스위칭 때문에 비효율 적이다. (작업이 덜 끝나도, 바로 리턴됨)">
+    <meta name="twitter:description" content="Sean&#39;s blog">
     
     
 
@@ -55,8 +47,6 @@ NonBlocking 은 컨텍스트 스위칭 (context-switch) 를 통해서 프로세�
       <meta property="og:image" content="//www.gravatar.com/avatar/7a4c68d665b261a046aaae5678716904?s=640">
     
 
-    
-      <meta property="og:image" content="http://www.ibm.com/developerworks/library/l-async/figure1.gif">
     
     
     
@@ -81,7 +71,7 @@ NonBlocking 은 컨텍스트 스위칭 (context-switch) 를 통해서 프로세�
 
   <body>
     <div id="blog">
-      <header id="header" data-behavior="4">
+      <header id="header" data-behavior="1">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
     <a class="header-title-link" href="https://ohsean53.github.io/">Sean&#39;s blog</a>
@@ -101,7 +91,7 @@ NonBlocking 은 컨텍스트 스위칭 (context-switch) 를 통해서 프로세�
   
 </header>
 
-      <nav id="sidebar" data-behavior="4">
+      <nav id="sidebar" data-behavior="1">
   <div class="sidebar-container">
     
       <div class="sidebar-profile">
@@ -210,26 +200,44 @@ NonBlocking 은 컨텍스트 스위칭 (context-switch) 를 통해서 프로세�
 </nav>
 
       
+        
 
-      <div id="main" data-behavior="4"
+      
+      <div id="main" data-behavior="1"
         class="
                hasCoverMetaIn
                ">
-        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
-          
-          
-            <div class="post-header main-content-wrap text-left">
+        
+          <section class="postShorten-group main-content-wrap">
+            
+            
+              
   
-    <h1 class="post-title" itemprop="headline">
-      Blocking-Nonblocking and Sync-Async
-    </h1>
+    
+      
+        
+      
+    
   
+
+
   
+
+<article class="postShorten postShorten--thumbnailimg-right" itemscope itemType="http://schema.org/BlogPosting">
+  <div class="postShorten-wrap">
+    
+    <div class="postShorten-header">
+      <h1 class="postShorten-title" itemprop="headline">
+        <a class="link-unstyled" href="https://ohsean53.github.io/2022/02/mysql-%EB%8D%B0%EB%93%9C%EB%9D%BD-%ED%8C%A8%ED%84%B4/">
+          Mysql 데드락 패턴
+        </a>
+      </h1>
+      
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2017-04-21T11:30:27&#43;09:00">
+      <time itemprop="datePublished" datetime="2022-02-10T00:00:00&#43;09:00">
         
-  April 21, 2017
+  February 10, 2022
 
       </time>
     
@@ -244,134 +252,23 @@ NonBlocking 은 컨텍스트 스위칭 (context-switch) 를 통해서 프로세�
 
   </div>
 
-</div>
-          
-          <div class="post-content markdown" itemprop="articleBody">
-            <div class="main-content-wrap">
-              
-
-<h1 id="ibm-에서-그려놓은-2x2-매트릭스">IBM 에서 그려놓은 2x2 매트릭스</h1>
-
-<p><img src="http://www.ibm.com/developerworks/library/l-async/figure1.gif" alt="IBM developerWorks의 단순화된 리눅스 I/O 모델 매트릭스" /></p>
-
-<h1 id="blocking-nonblocking">Blocking / NonBlocking</h1>
-
-<blockquote>
-<p><strong>호출되는 함수가 바로 리턴되는가, 안되는가 차이</strong></p>
-</blockquote>
-
-<p>blocking 은 말 그대로, 어떤 작업 (read, write) 을 하는 도중에는 다른 프로세스나 스레드가 작업을 할 수 없는 상태 (작업이 끝날때까지 리턴되지 않음)</p>
-
-<p>NonBlocking 은
-컨텍스트 스위칭 (context-switch) 를 통해서 프로세스나, 스레드가 각자 필요한 read, write 같은 시스템 콜을 번갈아 가며 사용가능 함.
-잦은 시스템 콜, 컨텍스트 스위칭 때문에 비효율 적이다.
-(작업이 덜 끝나도, 바로 리턴됨)</p>
-
-<h1 id="syncronous-asynchronous">Syncronous / Asynchronous</h1>
-
-<blockquote>
-<p><strong>호출 되는 함수의 작업 완료 여부를 누가 신경 쓰는가 차이</strong></p>
-</blockquote>
-
-<p>호출하는 쪽에서 호출되는 함수의 리턴을 기다리거나, 작업 완료를 계속 체크하려는 (동기화하려는) 시도를 한다면, Syncronous</p>
-
-<p>호출하는 쪽에서는 완료를 신경 쓰지 않고 callback 을 넘겨서 호출되는 쪽에서 callback 을 실행하고 호출하는 함수는 작업의 완료 여부를 신경 쓰지 않는다면, Asynchronous</p>
-
-<h1 id="정리">정리</h1>
-
-<p>동기-블록킹은 흔히 file 을 읽거나, 쓰기 시에 사용함.</p>
-
-<p>비동기-블로킹은 대표적인 예는 select() 를 호출하는 경우임. select 호출시 블록킹은 하나, 결과 완료를 신경 쓰지 않음</p>
-
-<p>동기-논블록킹의 EWOULDBLOCK 처럼 바로 끝나버리는 작업을 매번 체크함 (future.isDone())</p>
-
-<p>비동기-논블록킹은 boost.asio</p>
-
-              
-            </div>
-          </div>
-          <div id="post-footer" class="post-footer main-content-wrap">
-            
-              
-                
-                
-                  <div class="post-footer-tags">
-                    <span class="text-color-light text-small">TAGGED IN</span><br/>
-                    
-  <a class="tag tag--primary tag--small" href="https://ohsean53.github.io/tags/blocking/">blocking</a>
-
-  <a class="tag tag--primary tag--small" href="https://ohsean53.github.io/tags/nonblocking/">nonblocking</a>
-
-  <a class="tag tag--primary tag--small" href="https://ohsean53.github.io/tags/sync/">sync</a>
-
-  <a class="tag tag--primary tag--small" href="https://ohsean53.github.io/tags/async/">async</a>
-
-  <a class="tag tag--primary tag--small" href="https://ohsean53.github.io/tags/io/">io</a>
-
-                  </div>
-                
-              
-            
-            
-  <div class="post-actions-wrap">
-      <nav >
-        <ul class="post-actions post-action-nav">
-          
-            <li class="post-action">
-              
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://ohsean53.github.io/2017/04/welcome/" data-tooltip="welcome">
-              
-                  <i class="fa fa-angle-left"></i>
-                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
-                </a>
-            </li>
-            <li class="post-action">
-              
-                <a class="post-action-btn btn btn--disabled">
-              
-                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
-                  <i class="fa fa-angle-right"></i>
-                </a>
-            </li>
-          
-        </ul>
-      </nav>
-    <ul class="post-actions post-action-share" >
-      
-        <li class="post-action hide-lg hide-md hide-sm">
-          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
-            <i class="fa fa-share-alt"></i>
-          </a>
-        </li>
+    </div>
+    <div class="postShorten-excerpt" itemprop="articleBody">
+      데드락 발생 패턴 잠금의 종류  배타적 잠금  Exclusive-Lock, Write Lock, X-Lock 해당 트랜잭션이 특정 레코드나 간격을 변경하기 위해 획득해야 하는 잠금 내가 쓰기를 하는 동안 남들이 쓰지 못하게 하는 것!  공유 잠금  Shared-Lock, Read-Lock, S-Lock 레코드나 간격을 읽을 때 다른 트랜잭션이 변경하지 못하게 하는 용도의 잠금 내가 읽는 동안 남들이 내가 읽고 있는 데이터를 변경하거나 삭제하지 못하게 막는 장치   프라이머리 키나 유니크 키가 존재하는 테이블에서 INSERT를 수행할 때 공유 잠금을 걸어야하는 이유?
+      <p>
+        <a href="https://ohsean53.github.io/2022/02/mysql-%EB%8D%B0%EB%93%9C%EB%9D%BD-%ED%8C%A8%ED%84%B4/" class="postShorten-excerpt_link link">Continue reading</a>
         
-      
-      
-        <li class="post-action">
-          <a class="post-action-btn btn btn--default" href="#disqus_thread">
-            <i class="fa fa-comment-o"></i>
-          </a>
-        </li>
-      
-      <li class="post-action">
-        
-          <a class="post-action-btn btn btn--default" href="#">
-        
-          <i class="fa fa-list"></i>
-        </a>
-      </li>
-    </ul>
+      </p>
+    </div>
   </div>
-
+  
+</article>
 
             
-              
-                <div id="disqus_thread">
-  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</div>
-              
             
-          </div>
-        </article>
+
+          </section>
+        
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
     &copy; 2022 Sean OH. All Rights Reserved
@@ -379,66 +276,6 @@ NonBlocking 은 컨텍스트 스위칭 (context-switch) 를 통해서 프로세�
 </footer>
 
       </div>
-      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
-        
-  <div class="post-actions-wrap">
-      <nav >
-        <ul class="post-actions post-action-nav">
-          
-            <li class="post-action">
-              
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://ohsean53.github.io/2017/04/welcome/" data-tooltip="welcome">
-              
-                  <i class="fa fa-angle-left"></i>
-                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
-                </a>
-            </li>
-            <li class="post-action">
-              
-                <a class="post-action-btn btn btn--disabled">
-              
-                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
-                  <i class="fa fa-angle-right"></i>
-                </a>
-            </li>
-          
-        </ul>
-      </nav>
-    <ul class="post-actions post-action-share" >
-      
-        <li class="post-action hide-lg hide-md hide-sm">
-          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
-            <i class="fa fa-share-alt"></i>
-          </a>
-        </li>
-        
-      
-      
-        <li class="post-action">
-          <a class="post-action-btn btn btn--default" href="#disqus_thread">
-            <i class="fa fa-comment-o"></i>
-          </a>
-        </li>
-      
-      <li class="post-action">
-        
-          <a class="post-action-btn btn btn--default" href="#">
-        
-          <i class="fa fa-list"></i>
-        </a>
-      </li>
-    </ul>
-  </div>
-
-
-      </div>
-      <div id="share-options-bar" class="share-options-bar" data-behavior="4">
-  <i id="btn-close-shareoptions" class="fa fa-close"></i>
-  <ul class="share-options">
-    
-  </ul>
-</div>
-<div id="share-options-mask" class="share-options-mask"></div>
     </div>
     
     <div id="about">
@@ -617,32 +454,6 @@ NonBlocking 은 컨텍스트 스위칭 (context-switch) 를 통해서 프로세�
 
 
 
-
-  
-    
-      <script>
-        var disqus_config = function () {
-          this.page.url = 'https:\/\/ohsean53.github.io\/2017\/04\/blocking-nonblocking-and-sync-async\/';
-          
-            this.page.identifier = '\/2017\/04\/blocking-nonblocking-and-sync-async\/'
-          
-        };
-        (function() {
-          
-          
-          if (window.location.hostname == "localhost") {
-            return;
-          }
-          var d = document, s = d.createElement('script');
-          var disqus_shortname = 'ohsean';
-          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-
-          s.setAttribute('data-timestamp', +new Date());
-          (d.head || d.body).appendChild(s);
-        })();
-      </script>
-    
-  
 
 
 
